@@ -8,17 +8,21 @@ function uploadContent() {
         request.open('POST', window.location.href, true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         request.onload = function() {
+            // Request has ended, check again after 1 second.
             if (request.readyState === 4) {
-
-                // Request has ended, check again after 1 second.
-                content = temp;
+                if (request.status >= 200 && request.status < 400) {
+                    content = temp;
+                } else {
+                    showNotification('Error: ' + request.status);
+                }
                 setTimeout(uploadContent, 1000);
             }
         }
-        request.onerror = function() {
 
+        request.onerror = function() {
             // Try again after 1 second.
             setTimeout(uploadContent, 1000);
+            showNotification('There was a network error..?');
         }
         request.send('text=' + encodeURIComponent(temp));
 
