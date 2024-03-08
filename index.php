@@ -32,14 +32,14 @@ if (isset($_POST['text'])) {
 
     // file count limit
     if ($fileCount >= $file_limit) {
-        error_log("File limit reached $file_limit");
+        echo "File limit reached $file_limit";
         header('HTTP/1.0 403 Forbidden');
         die;
     }
     
     // single file size limit
     if (strlen($_POST['text']) > $single_file_size_limit) {
-        error_log("File size limit reached $single_file_size_limit");
+        echo "File size limit reached $single_file_size_limit";
         header('HTTP/1.0 403 Forbidden');
         die;
     }

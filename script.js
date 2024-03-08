@@ -13,7 +13,7 @@ function uploadContent() {
                 if (request.status >= 200 && request.status < 400) {
                     content = temp;
                 } else {
-                    showNotification('Error: ' + request.status);
+                    showNotification('Error: ' + request.status + ' ' + request.responseText);
                 }
                 setTimeout(uploadContent, 1000);
             }
