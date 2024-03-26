@@ -53,3 +53,16 @@ Mousetrap.bind('mod+s', function () {
     showNotification("content saved");
     return false;
 });
+
+const input = document.getElementById('content');
+input.addEventListener('keydown', function(event) {
+    if (event.key === 'Tab') {
+        event.preventDefault();
+        const start = this.selectionStart;
+        const end = this.selectionEnd;
+        const tab = '\t';
+        this.value = this.value.substring(0, start) + tab + this.value.substring(end);
+        this.selectionStart = this.selectionEnd = start + tab.length;
+    }
+});
+
