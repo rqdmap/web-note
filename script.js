@@ -66,3 +66,13 @@ input.addEventListener('keydown', function(event) {
     }
 });
 
+document.getElementById("content").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        let start = this.selectionStart;
+        let end = this.selectionEnd;
+        this.value = this.value.substring(0, start) + "\n" + this.value.substring(end);
+        this.selectionStart = this.selectionEnd = start + 1;
+    }
+});
+
